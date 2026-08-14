@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Deploy - Essência Íntima</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #7f1d1d 0%, #5a1515 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        section {
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            color: #7f1d1d;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #7f1d1d;
+            padding-bottom: 10px;
+        }
+        
+        h3 {
+            color: #333;
+            font-size: 1.3em;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+            color: #555;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #d63384;
+        }
+        
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 0.9em;
+        }
+        
+        pre code {
+            background: none;
+            color: #f8f8f2;
+            padding: 0;
+        }
+        
+        .step {
+            background: #f9f9f9;
+            border-left: 4px solid #7f1d1d;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .step h4 {
+            color: #7f1d1d;
+            margin-bottom: 10px;
+        }
+        
+        .checklist {
+            list-style: none;
+        }
+        
+        .checklist li {
+            padding: 10px;
+            margin: 5px 0;
+            background: #f0f0f0;
+            border-radius: 3px;
+        }
+        
+        .checklist li:before {
+            content: "✓ ";
+            color: #7f1d1d;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background: #f4f4f4;
+            color: #7f1d1d;
+            font-weight: bold;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .btn-primary {
+            background: #7f1d1d;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5a1515;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(127, 29, 29, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #7f1d1d;
+            border: 2px solid #7f1d1d;
+        }
+        
+        .btn-secondary:hover {
+            background: #7f1d1d;
+            color: white;
+        }
+        
+        footer {
+            background: #f9f9f9;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🚀 Guia de Deploy</h1>
+            <p>Essência Íntima - E-commerce com Next.js, Supabase e Stripe</p>
+        </header>
+        
+        <div class="content">
+            <!-- Visão Geral -->
+            <section>
+                <h2>📋 Visão Geral</h2>
+                <p>Este guia fornece instruções passo a passo para fazer deploy da loja Essência Íntima em produção usando Vercel, Supabase e Stripe.</p>
+                
+                <div class="success">
+                    <strong>✓ Projeto Pronto!</strong><br>
+                    O projeto Next.js foi compilado com sucesso. Todas as dependências estão instaladas e configuradas.
+                </div>
+            </section>
+            
+            <!-- Requisitos -->
+            <section>
+                <h2>✅ Requisitos</h2>
+                <p>Antes de começar, certifique-se de ter:</p>
+                
+                <ul class="checklist">
+                    <li>Conta no GitHub</li>
+                    <li>Conta no Vercel (gratuita)</li>
+                    <li>Conta no Supabase (gratuita)</li>
+                    <li>Conta no Stripe (gratuita para testes)</li>
+                    <li>Node.js 18+ instalado localmente</li>
+                </ul>
+            </section>
+            
+            <!-- Passo 1: GitHub -->
+            <section>
+                <h2>1️⃣ Configurar GitHub</h2>
+                
+                <div class="step">
+                    <h4>Passo 1.1: Criar Repositório</h4>
+                    <ol>
+                        <li>Acesse <a href="https://github.com/new" target="_blank">github.com/new</a></li>
+                        <li>Nome: <code>essencia-intima</code></li>
+                        <li>Descrição: <code>Loja Online - Essência Íntima</code></li>
+                        <li>Clique em "Create repository"</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 1.2: Fazer Push do Código</h4>
+                    <pre><code>cd c:\Users\Lenovo\Downloads\essencia-intima
+
+# Adicionar repositório remoto
+git remote add origin https://github.com/SEU_USUARIO/essencia-intima.git
+
+# Renomear branch para main
+git branch -M main
+
+# Fazer push
+git push -u origin main</code></pre>
+                </div>
+            </section>
+            
+            <!-- Passo 2: Supabase -->
+            <section>
+                <h2>2️⃣ Configurar Supabase</h2>
+                
+                <div class="step">
+                    <h4>Passo 2.1: Criar Projeto</h4>
+                    <ol>
+                        <li>Acesse <a href="https://supabase.com" target="_blank">supabase.com</a></li>
+                        <li>Clique em "New Project"</li>
+                        <li>Nome: <code>essencia-intima</code></li>
+                        <li>Database Password: <strong>Salve em local seguro!</strong></li>
+                        <li>Region: <code>South America (São Paulo)</code></li>
+                        <li>Clique em "Create new project"</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 2.2: Copiar Credenciais</h4>
+                    <p>No dashboard do Supabase:</p>
+                    <ol>
+                        <li>Vá para Settings → API</li>
+                        <li>Copie <code>Project URL</code> → <code>NEXT_PUBLIC_SUPABASE_URL</code></li>
+                        <li>Copie <code>anon public</code> key → <code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></li>
+                        <li>Copie <code>service_role</code> secret → <code>SUPABASE_SERVICE_ROLE_KEY</code></li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 2.3: Criar Tabelas (SQL)</h4>
+                    <p>No Supabase SQL Editor, execute:</p>
+                    <pre><code>-- Tabela de Usuários
+CREATE TABLE users (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email VARCHAR UNIQUE NOT NULL,
+  full_name VARCHAR,
+  avatar_url VARCHAR,
+  role VARCHAR DEFAULT 'customer',
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Tabela de Produtos
+CREATE TABLE products (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  name VARCHAR NOT NULL,
+  description TEXT,
+  price DECIMAL(10,2) NOT NULL,
+  image_url VARCHAR,
+  category VARCHAR,
+  in_stock BOOLEAN DEFAULT true,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Tabela de Pedidos
+CREATE TABLE orders (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  user_id UUID REFERENCES users(id),
+  total DECIMAL(10,2),
+  status VARCHAR DEFAULT 'pending',
+  stripe_session_id VARCHAR,
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
+-- Tabela de Itens do Pedido
+CREATE TABLE order_items (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  order_id UUID REFERENCES orders(id),
+  product_id UUID REFERENCES products(id),
+  quantity INTEGER,
+  price DECIMAL(10,2),
+  created_at TIMESTAMP DEFAULT NOW()
+);</code></pre>
+                </div>
+            </section>
+            
+            <!-- Passo 3: Stripe -->
+            <section>
+                <h2>3️⃣ Configurar Stripe</h2>
+                
+                <div class="step">
+                    <h4>Passo 3.1: Criar Conta Stripe</h4>
+                    <ol>
+                        <li>Acesse <a href="https://stripe.com" target="_blank">stripe.com</a></li>
+                        <li>Clique em "Start now"</li>
+                        <li>Complete o registro</li>
+                        <li>Ative "Test mode" (canto superior direito)</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 3.2: Copiar Chaves API</h4>
+                    <p>No dashboard do Stripe (modo teste):</p>
+                    <ol>
+                        <li>Vá para Developers → API keys</li>
+                        <li>Copie <code>Publishable key</code> → <code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code></li>
+                        <li>Copie <code>Secret key</code> → <code>STRIPE_SECRET_KEY</code></li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 3.3: Configurar Webhook</h4>
+                    <ol>
+                        <li>No Stripe Developers → Webhooks</li>
+                        <li>Clique em "Add Endpoint"</li>
+                        <li>URL: <code>https://seu-dominio.vercel.app/api/webhook/stripe</code></li>
+                        <li>Selecione eventos: <code>checkout.session.completed</code>, <code>payment_intent.succeeded</code></li>
+                        <li>Copie Signing secret → <code>STRIPE_WEBHOOK_SECRET</code></li>
+                    </ol>
+                </div>
+                
+                <div class="warning">
+                    <strong>⚠️ Dica:</strong> Para testes locais com webhook, use <code>stripe listen</code> e copie o valor que aparecer.
+                </div>
+            </section>
+            
+            <!-- Passo 4: Vercel -->
+            <section>
+                <h2>4️⃣ Deploy no Vercel</h2>
+                
+                <div class="step">
+                    <h4>Passo 4.1: Conectar Vercel com GitHub</h4>
+                    <ol>
+                        <li>Acesse <a href="https://vercel.com" target="_blank">vercel.com</a></li>
+                        <li>Clique em "New Project"</li>
+                        <li>Clique em "Import Git Repository"</li>
+                        <li>Selecione seu repositório <code>essencia-intima</code></li>
+                        <li>Clique em "Import"</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 4.2: Adicionar Variáveis de Ambiente</h4>
+                    <p>No formulário de configuração do Vercel:</p>
+                    
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Variável</th>
+                                <th>Valor (copie do)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>NEXT_PUBLIC_SUPABASE_URL</code></td>
+                                <td>Supabase → Settings → API</td>
+                            </tr>
+                            <tr>
+                                <td><code>NEXT_PUBLIC_SUPABASE_ANON_KEY</code></td>
+                                <td>Supabase → Settings → API</td>
+                            </tr>
+                            <tr>
+                                <td><code>SUPABASE_SERVICE_ROLE_KEY</code></td>
+                                <td>Supabase → Settings → API</td>
+                            </tr>
+                            <tr>
+                                <td><code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code></td>
+                                <td>Stripe → Developers → API keys</td>
+                            </tr>
+                            <tr>
+                                <td><code>STRIPE_SECRET_KEY</code></td>
+                                <td>Stripe → Developers → API keys</td>
+                            </tr>
+                            <tr>
+                                <td><code>STRIPE_WEBHOOK_SECRET</code></td>
+                                <td>Stripe → Developers → Webhooks</td>
+                            </tr>
+                            <tr>
+                                <td><code>NEXT_PUBLIC_URL</code></td>
+                                <td>Seu domínio Vercel (ex: essencia-intima.vercel.app)</td>
+                            </tr>
+                            <tr>
+                                <td><code>NODE_ENV</code></td>
+                                <td><code>production</code></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="step">
+                    <h4>Passo 4.3: Fazer Deploy</h4>
+                    <ol>
+                        <li>Clique em "Deploy"</li>
+                        <li>Aguarde a compilação (2-3 minutos)</li>
+                        <li>Seu site estará em <code>essencia-intima.vercel.app</code></li>
+                    </ol>
+                </div>
+            </section>
+            
+            <!-- Testes -->
+            <section>
+                <h2>🧪 Testes</h2>
+                
+                <div class="step">
+                    <h4>Testar Checkout com Cartão Stripe</h4>
+                    <p>Use este cartão de teste:</p>
+                    <pre><code>Número: 4242 4242 4242 4242
+Expiração: 12/25
+CVC: 123</code></pre>
+                </div>
+                
+                <div class="step">
+                    <h4>Verificar Pagamento no Stripe</h4>
+                    <ol>
+                        <li>No Stripe Dashboard → Payments</li>
+                        <li>Você verá todos os pagamentos processados</li>
+                        <li>Em modo teste, não há cobrança real</li>
+                    </ol>
+                </div>
+            </section>
+            
+            <!-- Domínio Customizado -->
+            <section>
+                <h2>🌐 Configurar Domínio Customizado</h2>
+                
+                <div class="step">
+                    <h4>No Vercel</h4>
+                    <ol>
+                        <li>Vá para Project Settings</li>
+                        <li>Clique em "Domains"</li>
+                        <li>Adicione seu domínio customizado</li>
+                        <li>Siga as instruções de DNS</li>
+                    </ol>
+                </div>
+                
+                <div class="step">
+                    <h4>Atualizar URLs de Webhook Stripe</h4>
+                    <p>Após configurar seu domínio:</p>
+                    <pre><code>https://seu-dominio.com/api/webhook/stripe</code></pre>
+                </div>
+            </section>
+            
+            <!-- Próximos Passos -->
+            <section>
+                <h2>📋 Próximos Passos</h2>
+                <ul class="checklist">
+                    <li>Adicionar produtos no banco de dados Supabase</li>
+                    <li>Configurar sistema de autenticação/login</li>
+                    <li>Implementar painel administrativo</li>
+                    <li>Configurar emails transacionais (SendGrid, Resend)</li>
+                    <li>Configurar DNS do domínio</li>
+                    <li>Implementar política de privacidade</li>
+                    <li>Implementar termos de serviço</li>
+                    <li>Configurar SSL certificate (automático no Vercel)</li>
+                    <li>Monitorar performance com Vercel Analytics</li>
+                    <li>Setup de backups automáticos Supabase</li>
+                </ul>
+            </section>
+            
+            <!-- Troubleshooting -->
+            <section>
+                <h2>🔧 Troubleshooting</h2>
+                
+                <div class="step">
+                    <h4>Erro: "NEXT_PUBLIC_SUPABASE_URL is not defined"</h4>
+                    <p><strong>Solução:</strong> Verifique se você adicionou todas as variáveis de ambiente no Vercel</p>
+                </div>
+                
+                <div class="step">
+                    <h4>Erro: "Stripe API key not found"</h4>
+                    <p><strong>Solução:</strong> Certifique-se de que a chave Stripe secreta está na variável <code>STRIPE_SECRET_KEY</code></p>
+                </div>
+                
+                <div class="step">
+                    <h4>Checkout não redireciona para Stripe</h4>
+                    <p><strong>Solução:</strong> Verifique se a chave pública do Stripe está correta em <code>NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY</code></p>
+                </div>
+            </section>
+            
+            <!-- Suporte -->
+            <section>
+                <h2>📞 Suporte</h2>
+                <p>Em caso de dúvidas ou problemas:</p>
+                <ul class="checklist">
+                    <li>Email: contato@essenciaintima.com</li>
+                    <li>Documentação Next.js: <a href="https://nextjs.org/docs" target="_blank">nextjs.org/docs</a></li>
+                    <li>Documentação Supabase: <a href="https://supabase.com/docs" target="_blank">supabase.com/docs</a></li>
+                    <li>Documentação Stripe: <a href="https://stripe.com/docs" target="_blank">stripe.com/docs</a></li>
+                    <li>Documentação Vercel: <a href="https://vercel.com/docs" target="_blank">vercel.com/docs</a></li>
+                </ul>
+            </section>
+            
+            <!-- Resumo -->
+            <section>
+                <h2>✨ Parabéns!</h2>
+                <p style="font-size: 1.1em;">
+                    Você está pronto para fazer deploy da Essência Íntima! Seguindo este guia, sua loja estará online em minutos.
+                </p>
+                <div class="success" style="margin-top: 20px;">
+                    <strong>🚀 Próximo Passo:</strong> Comece por fazer push do código para GitHub!
+                </div>
+            </section>
+        </div>
+        
+        <footer>
+            <p><strong>Essência Íntima</strong> - Loja Online Moderna</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">© 2026 Todos os direitos reservados. | Construído com ❤️ usando Next.js, Supabase e Stripe</p>
+        </footer>
+    </div>
+</body>
+</html>

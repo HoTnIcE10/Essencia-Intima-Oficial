@@ -18,6 +18,8 @@
   --color-primary-light: var(--primary-light);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-script: var(--font-script);
+  --font-modern: var(--font-modern);
 }
 
 @media (prefers-color-scheme: dark) {

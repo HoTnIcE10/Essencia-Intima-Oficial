@@ -163,19 +163,29 @@ export default function Home() {
           <div className="grid gap-8 lg:grid-cols-[1.4fr_0.8fr] items-center">
             <div
               key={currentSlide.title}
-              className="relative overflow-hidden rounded-[28px] border-4 border-[#d4af37] shadow-[0_25px_60px_rgba(0,0,0,0.12)] transition-all duration-700 ease-in-out"
-              style={{ minHeight: "420px", opacity: 1, transform: "scale(1)" }}
+              className="relative overflow-hidden rounded-[28px] border-4 border-[#d4af37] shadow-[0_25px_60px_rgba(0,0,0,0.12)]"
+              style={{
+                minHeight: "420px",
+                opacity: 1,
+                transform: "scale(1)",
+                transition: "opacity 0.8s ease-in-out, transform 0.8s ease-in-out",
+              }}
             >
               <img
                 src={currentSlide.image}
                 alt={currentSlide.title}
-                className="h-[420px] w-full object-cover transition-all duration-700 ease-in-out"
-                style={{ transform: "scale(1.02)" }}
+                className="h-[420px] w-full object-cover"
+                style={{
+                  transform: "scale(1.04)",
+                  transition: "transform 0.9s ease-in-out, opacity 0.9s ease-in-out",
+                  opacity: 1,
+                }}
               />
               <div
-                className="absolute inset-0 transition-all duration-700 ease-in-out"
+                className="absolute inset-0"
                 style={{
                   background: `linear-gradient(90deg, ${currentSlide.color} 0%, rgba(0,0,0,0.12) 35%, rgba(0,0,0,0.15) 100%)`,
+                  transition: "background 0.8s ease-in-out",
                 }}
               />
               <div className="absolute inset-0 flex items-end p-8 md:p-10">
@@ -209,11 +219,12 @@ export default function Home() {
                   key={item.title}
                   type="button"
                   onClick={() => setActiveSlide(index)}
-                  className="w-full rounded-2xl border p-4 text-left transition-all duration-300 ease-in-out"
+                  className="w-full rounded-2xl border p-4 text-left transition-all duration-400 ease-in-out"
                   style={{
                     backgroundColor: activeSlide === index ? "#f7f0d4" : "#ffffff",
                     borderColor: activeSlide === index ? "#d4af37" : "#e7e7e7",
-                    transform: activeSlide === index ? "translateX(0)" : "translateX(0)",
+                    transform: activeSlide === index ? "translateX(2px)" : "translateX(0)",
+                    boxShadow: activeSlide === index ? "0 10px 25px rgba(212, 175, 55, 0.12)" : "none",
                   }}
                 >
                   <div className="flex items-center gap-4">

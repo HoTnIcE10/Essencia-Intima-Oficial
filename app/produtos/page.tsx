@@ -76,29 +76,37 @@ export default function Produtos() {
   });
 
   return (
-    <div className="w-full px-4 py-8" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
+    <div className="w-full px-4 py-10" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8" style={{ color: "#000000" }}>
-          Nossos Produtos
-        </h1>
+        <div className="mb-10 text-center">
+          <p className="mb-3 uppercase tracking-[0.28em]" style={{ color: "#8b6b2e", fontFamily: "var(--font-modern)", fontSize: "12px" }}>
+            Coleção premium
+          </p>
+          <h1 className="text-4xl md:text-5xl font-bold" style={{ color: "#000000" }}>
+            Nossos Produtos
+          </h1>
+        </div>
 
-        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
-          <div className="flex flex-col md:flex-row gap-4 md:items-end">
+        <div className="mb-10 rounded-[28px] p-6 md:p-8" style={{ backgroundColor: "#f8f1d8", border: "1px solid rgba(212, 175, 55, 0.5)" }}>
+          <div className="flex flex-col gap-6 md:flex-row md:items-end">
             <div className="flex-1">
-              <label className="block text-lg font-semibold mb-2" style={{ color: "#000000" }}>
+              <label className="block text-base font-semibold mb-2" style={{ color: "#000000" }}>
                 Buscar produto
               </label>
               <input
                 type="text"
                 value={searchTerm}
                 onChange={(event) => setSearchTerm(event.target.value)}
-                placeholder="Pesquisar por fragrância..."
-                className="w-full rounded-lg border px-4 py-3 outline-none"
+                placeholder="Pesquisar por fragrância ou nome..."
+                className="w-full rounded-full border px-4 py-3 text-sm outline-none transition"
                 style={{ borderColor: "#d4af37", backgroundColor: "#ffffff", color: "#000000" }}
               />
             </div>
+
             <div className="flex-1">
-              <label className="block text-lg font-semibold mb-2" style={{ color: "#000000" }}>Filtrar por Preço</label>
+              <label className="block text-base font-semibold mb-2" style={{ color: "#000000" }}>
+                Filtrar por preço
+              </label>
               <div className="flex items-center gap-4">
                 <input
                   type="range"
@@ -106,9 +114,9 @@ export default function Produtos() {
                   max="200"
                   value={priceFilter}
                   onChange={(e) => setPriceFilter(Number(e.target.value))}
-                  className="flex-1"
+                  className="w-full accent-[#d4af37]"
                 />
-                <span className="text-lg font-bold" style={{ color: "#000000" }}>
+                <span className="min-w-[110px] text-right text-lg font-bold" style={{ color: "#000000" }}>
                   Até R$ {priceFilter.toFixed(2)}
                 </span>
               </div>
@@ -122,9 +130,9 @@ export default function Produtos() {
               <ProductCard key={product.id} product={product} />
             ))
           ) : (
-            <div className="col-span-full text-center py-12">
-              <p className="text-gray-600 text-lg">
-                Nenhum produto encontrado nessa faixa de preço.
+            <div className="col-span-full rounded-[24px] border border-dashed p-12 text-center" style={{ borderColor: "#d4af37", backgroundColor: "#f9f4e8" }}>
+              <p className="text-lg" style={{ color: "#000000" }}>
+                Nenhum produto encontrado para sua busca.
               </p>
             </div>
           )}

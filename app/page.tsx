@@ -39,13 +39,35 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section
-        className="py-20 text-center text-white animate-fade-in-down"
-        style={{ backgroundColor: "#000000", borderBottom: "6px solid #d4af37" }}
+        className="py-20 text-center text-white animate-fade-in-down relative overflow-hidden"
+        style={{
+          borderBottom: "6px solid #d4af37",
+          backgroundImage: "url(/fotos-fundo/pexels-toni-5381474.jpg)",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          minHeight: "600px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
       >
-        <div className="max-w-6xl mx-auto px-4">
+        {/* Gradiente vermelho → transparente (direita para esquerda) */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: "linear-gradient(to left, rgba(220, 20, 60, 0.8), rgba(220, 20, 60, 0.4))",
+            pointerEvents: "none",
+          }}
+        />
+
+        <div className="max-w-6xl mx-auto px-4 relative z-10">
           <LogoAnimation />
-          <h1 className="text-5xl font-bold mb-4" style={{ color: "#f4e4a6" }}>✨ Bem-vindo à Essência Intima ✨</h1>
-          <p className="text-xl mb-8">Descubra aromas que despertam sensações</p>
+          <h1 className="text-5xl font-bold mb-4" style={{ color: "#ffffff", textShadow: "2px 2px 8px rgba(0,0,0,0.5)" }}>✨ Bem-vindo à Essência Intima ✨</h1>
+          <p className="text-xl mb-8" style={{ textShadow: "1px 1px 4px rgba(0,0,0,0.5)" }}>Descubra aromas que despertam sensações</p>
           <Link
             href="/produtos"
             className="inline-block px-8 py-3 text-red-900 rounded-lg font-semibold hover:opacity-90 transition border-2 hover-lift"

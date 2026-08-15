@@ -33,9 +33,9 @@ export default function Carrinho() {
   }
 
   return (
-    <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
+    <div className="w-full px-4 py-8" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
       <div className="max-w-2xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8" style={{ color: "#7f1d1d" }}>
+        <h1 className="text-4xl font-bold mb-8" style={{ color: "#000000" }}>
           🛒 Seu Carrinho 🛒
         </h1>
 
@@ -45,7 +45,7 @@ export default function Carrinho() {
             <Link
               href="/produtos"
               className="inline-block px-8 py-3 text-white rounded-lg font-semibold hover:opacity-90 transition"
-              style={{ backgroundColor: "#7f1d1d" }}
+              style={{ backgroundColor: "#000000" }}
             >
               Voltar aos Produtos
             </Link>
@@ -64,7 +64,7 @@ export default function Carrinho() {
                     <p className="text-gray-600">Quantidade: {item.quantity}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-bold text-lg" style={{ color: "#7f1d1d" }}>
+                    <p className="font-bold text-lg" style={{ color: "#000000" }}>
                       R$ {(item.price * item.quantity).toFixed(2)}
                     </p>
                   </div>
@@ -78,7 +78,7 @@ export default function Carrinho() {
                 <span className="text-xl font-semibold">Total:</span>
                 <span
                   className="text-3xl font-bold"
-                  style={{ color: "#7f1d1d" }}
+                  style={{ color: "#000000" }}
                 >
                   R$ {total.toFixed(2)}
                 </span>

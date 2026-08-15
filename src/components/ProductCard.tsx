@@ -31,7 +31,7 @@ export function ProductCard({ product }: any) {
     <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover-lift animate-fade-in-up" style={{ border: "3px solid #d4af37" }}>
       <div
         className="h-48 bg-gradient-to-br flex items-center justify-center text-5xl"
-        style={{ backgroundColor: "#7f1d1d" }}
+        style={{ backgroundColor: "#000000" }}
       >
         {product.image || "❤️"}
       </div>
@@ -48,7 +48,7 @@ export function ProductCard({ product }: any) {
             onClick={handleAddToCart}
             disabled={isAdding}
             className="px-4 py-2 text-white rounded-lg hover:opacity-90 transition border-2"
-            style={{ backgroundColor: "#7f1d1d", borderColor: "#d4af37" }}
+            style={{ backgroundColor: "#000000", borderColor: "#d4af37" }}
           >
             {isAdding ? "..." : "Adicionar"}
           </button>

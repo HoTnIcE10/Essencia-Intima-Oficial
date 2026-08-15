@@ -20,7 +20,7 @@ export function FeatureCard({ icon, title, description, index }: FeatureProps) {
       }}
     >
       <div className="text-5xl mb-4">{icon}</div>
-      <h3 className="text-xl font-semibold mb-2" style={{ color: "#7f1d1d" }}>
+      <h3 className="text-xl font-semibold mb-2" style={{ color: "#000000" }}>
         {title}
       </h3>
       <p className="text-gray-700">{description}</p>

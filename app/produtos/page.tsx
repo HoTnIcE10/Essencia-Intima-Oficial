@@ -68,15 +68,15 @@ export default function Produtos() {
   const filteredProducts = allProducts.filter((p) => p.price <= priceFilter);
 
   return (
-    <div className="w-full px-4 py-8">
+    <div className="w-full px-4 py-8" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8" style={{ color: "#7f1d1d" }}>
+        <h1 className="text-4xl font-bold mb-8" style={{ color: "#000000" }}>
           Nossos Produtos
         </h1>
 
         {/* Filter */}
         <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
-          <label className="block text-lg font-semibold mb-4" style={{ color: "#7f1d1d" }}>Filtrar por Preço</label>
+          <label className="block text-lg font-semibold mb-4" style={{ color: "#000000" }}>Filtrar por Preço</label>
           <div className="flex items-center gap-4">
             <input
               type="range"
@@ -86,7 +86,7 @@ export default function Produtos() {
               onChange={(e) => setPriceFilter(Number(e.target.value))}
               className="flex-1"
             />
-            <span className="text-lg font-bold" style={{ color: "#7f1d1d" }}>
+            <span className="text-lg font-bold" style={{ color: "#000000" }}>
               Até R$ {priceFilter.toFixed(2)}
             </span>
           </div>

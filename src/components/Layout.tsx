@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export function Header() {
   return (
-    <header style={{backgroundColor: '#7f1d1d', color: 'white', padding: '15px 20px', borderBottom: '4px solid #d4af37', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'}}>
+    <header style={{backgroundColor: '#000000', color: 'white', padding: '15px 20px', borderBottom: '4px solid #d4af37', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'}}>
       <div style={{maxWidth: '1280px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
         <Link href="/" className="logo-shimmer" style={{display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none'}}>
           <img src="/logos/3-removebg-preview.png" alt="Essencia Intima" style={{height: '45px', width: 'auto'}} />
@@ -51,7 +51,7 @@ function NavLink({ href, children }: { href: string; children: React.ReactNode }
 export function Footer() {
   return (
     <footer style={{
-      backgroundColor: '#7f1d1d',
+      backgroundColor: '#000000',
       color: 'white',
       padding: '50px 20px 30px',
       marginTop: '60px',

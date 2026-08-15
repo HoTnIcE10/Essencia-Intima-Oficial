@@ -40,7 +40,7 @@ export default function Home() {
       {/* Hero Section */}
       <section
         className="py-20 text-center text-white animate-fade-in-down"
-        style={{ backgroundColor: "#7f1d1d", borderBottom: "6px solid #d4af37" }}
+        style={{ backgroundColor: "#000000", borderBottom: "6px solid #d4af37" }}
       >
         <div className="max-w-6xl mx-auto px-4">
           <LogoAnimation />
@@ -57,9 +57,9 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#fef5e7" }}>
+      <section className="py-16 px-4" style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: "#7f1d1d" }}>
+          <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: "#000000" }}>
             ✨ Produtos em Destaque ✨
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -71,9 +71,9 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#fff9e6" }}>
+      <section className="py-16 px-4" style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-center animate-fade-in-up" style={{ color: "#7f1d1d" }}>
+          <h2 className="text-4xl font-bold mb-8 text-center animate-fade-in-up" style={{ color: "#000000" }}>
             Por que escolher Essência Intima?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

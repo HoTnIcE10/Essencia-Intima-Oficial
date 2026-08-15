@@ -23,14 +23,14 @@ export default function Sucesso() {
             <Link
               href="/conta"
               className="px-8 py-3 text-white rounded-lg font-semibold hover:opacity-90 transition"
-              style={{ backgroundColor: "#7f1d1d" }}
+              style={{ backgroundColor: "#000000" }}
             >
               Minha Conta
             </Link>
             <Link
               href="/produtos"
               className="px-8 py-3 border-2 text-gray-900 rounded-lg font-semibold hover:bg-gray-100 transition"
-              style={{ borderColor: "#7f1d1d", color: "#7f1d1d" }}
+              style={{ borderColor: "#000000", color: "#000000" }}
             >
               Continuar Comprando
             </Link>

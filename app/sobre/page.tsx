@@ -1,14 +1,14 @@
 export default function Sobre() {
   return (
-    <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
+    <div className="w-full px-4 py-8" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8" style={{ color: "#7f1d1d" }}>
+        <h1 className="text-4xl font-bold mb-8" style={{ color: "#000000" }}>
           ✨ Sobre Essência Intima ✨
         </h1>
 
         {/* Mission Section */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#7f1d1d" }}>
+          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
             Nossa Missão
           </h2>
           <p className="text-gray-700 text-lg leading-relaxed mb-4">
@@ -24,12 +24,12 @@ export default function Sobre() {
 
         {/* Values Section */}
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#7f1d1d" }}>
+          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
             Nossos Valores
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="p-6 bg-gray-50 rounded-lg">
-              <h3 className="font-semibold text-lg mb-2" style={{ color: "#7f1d1d" }}>
+              <h3 className="font-semibold text-lg mb-2" style={{ color: "#000000" }}>
                 Qualidade
               </h3>
               <p className="text-gray-600">
@@ -37,7 +37,7 @@ export default function Sobre() {
               </p>
             </div>
             <div className="p-6 bg-gray-50 rounded-lg">
-              <h3 className="font-semibold text-lg mb-2" style={{ color: "#7f1d1d" }}>
+              <h3 className="font-semibold text-lg mb-2" style={{ color: "#000000" }}>
                 Discrição
               </h3>
               <p className="text-gray-600">
@@ -45,7 +45,7 @@ export default function Sobre() {
               </p>
             </div>
             <div className="p-6 bg-gray-50 rounded-lg">
-              <h3 className="font-semibold text-lg mb-2" style={{ color: "#7f1d1d" }}>
+              <h3 className="font-semibold text-lg mb-2" style={{ color: "#000000" }}>
                 Respeito
               </h3>
               <p className="text-gray-600">
@@ -57,7 +57,7 @@ export default function Sobre() {
 
         {/* Customer Service */}
         <section>
-          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#7f1d1d" }}>
+          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
             Atendimento ao Cliente
           </h2>
           <div className="bg-gray-50 p-6 rounded-lg">

@@ -32,10 +32,10 @@ export default function Conta() {
 
   if (!isLoggedIn) {
     return (
-      <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
+      <div className="w-full px-4 py-8" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
         <div className="max-w-md mx-auto">
           <div className="bg-white p-8 rounded-lg shadow-md">
-            <h1 className="text-3xl font-bold mb-8 text-center" style={{ color: "#7f1d1d" }}>
+            <h1 className="text-3xl font-bold mb-8 text-center" style={{ color: "#000000" }}>
               Minha Conta
             </h1>
 
@@ -73,7 +73,7 @@ export default function Conta() {
               <button
                 type="submit"
                 className="w-full py-3 text-white rounded-lg font-semibold hover:opacity-90 transition"
-                style={{ backgroundColor: "#7f1d1d" }}
+                style={{ backgroundColor: "#000000" }}
               >
                 Fazer Login
               </button>
@@ -81,7 +81,7 @@ export default function Conta() {
 
             <p className="text-center text-gray-600 mt-6">
               Não tem conta?{" "}
-              <Link href="#" className="font-semibold hover:underline" style={{ color: "#7f1d1d" }}>
+              <Link href="#" className="font-semibold hover:underline" style={{ color: "#000000" }}>
                 Registre-se aqui
               </Link>
             </p>
@@ -94,14 +94,14 @@ export default function Conta() {
   return (
     <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8" style={{ color: "#7f1d1d" }}>
+        <h1 className="text-4xl font-bold mb-8" style={{ color: "#000000" }}>
           👤 Minha Conta 👤
         </h1>
 
         {/* Profile Section */}
         <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4" style={{ color: "#7f1d1d" }}>
+            <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
               Informações Pessoais
             </h2>
             <div className="space-y-4">
@@ -117,7 +117,7 @@ export default function Conta() {
           </div>
 
           <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4" style={{ color: "#7f1d1d" }}>
+            <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
               Histórico de Pedidos
             </h2>
             <p className="text-gray-600 mb-4">
@@ -126,7 +126,7 @@ export default function Conta() {
             <Link
               href="/produtos"
               className="inline-block px-6 py-2 text-white rounded-lg font-semibold hover:opacity-90 transition"
-              style={{ backgroundColor: "#7f1d1d" }}
+              style={{ backgroundColor: "#000000" }}
             >
               Fazer uma Compra
             </Link>
@@ -135,7 +135,7 @@ export default function Conta() {
 
         {/* Preferences Section */}
         <section className="bg-white p-6 rounded-lg shadow-md mb-8">
-          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#7f1d1d" }}>
+          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
             Preferências
           </h2>
           <div className="space-y-4">
@@ -154,7 +154,7 @@ export default function Conta() {
         <button
           onClick={handleLogout}
           className="px-8 py-3 text-white rounded-lg font-semibold hover:opacity-90 transition"
-          style={{ backgroundColor: "#7f1d1d" }}
+          style={{ backgroundColor: "#000000" }}
         >
           Sair da Conta
         </button>

@@ -75,8 +75,8 @@ export default function Produtos() {
         </h1>
 
         {/* Filter */}
-        <div className=\"mb-8 p-6 rounded-lg\" style={{ backgroundColor: \"#f4e4a6\", border: \"2px solid #d4af37\" }}>
-          <label className=\"block text-lg font-semibold mb-4\" style={{ color: \"#7f1d1d\" }}>Filtrar por Preço</label>
+        <div className="mb-8 p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
+          <label className="block text-lg font-semibold mb-4" style={{ color: "#7f1d1d" }}>Filtrar por Preço</label>
           <div className="flex items-center gap-4">
             <input
               type="range"

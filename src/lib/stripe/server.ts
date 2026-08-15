@@ -1,10 +1,21 @@
 import Stripe from "stripe";
 
-export const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: "2026-07-29.dahlia" as any,
-});
+export function getStripe() {
+  const secretKey = process.env.STRIPE_SECRET_KEY;
+
+  if (!secretKey) {
+    throw new Error(
+      "STRIPE_SECRET_KEY não está definido. Adicione a variável de ambiente no Vercel ou no arquivo .env.local."
+    );
+  }
+
+  return new Stripe(secretKey, {
+    apiVersion: "2026-07-29.dahlia" as any,
+  });
+}
 
 export async function createCheckoutSession(items: any[]) {
+  const stripe = getStripe();
   const line_items = items.map((item) => ({
     price_data: {
       currency: "brl",

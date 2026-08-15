@@ -1,9 +1,10 @@
-import { stripe } from "@/src/lib/stripe/server";
+import { getStripe } from "@/src/lib/stripe/server";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
     const { items } = await req.json();
+    const stripe = getStripe();
 
     const line_items = items.map((item: any) => ({
       price_data: {

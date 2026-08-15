@@ -38,14 +38,15 @@ export default function Home() {
       {/* Hero Section */}
       <section
         className="py-20 text-center text-white"
-        style={{ backgroundColor: "#7f1d1d" }}
+        style={{ backgroundColor: "#7f1d1d", borderBottom: "6px solid #d4af37" }}
       >
         <div className="max-w-6xl mx-auto px-4">
-          <h1 className="text-5xl font-bold mb-4">Bem-vindo à Essência Intima</h1>
+          <h1 className="text-5xl font-bold mb-4" style={{ color: "#f4e4a6" }}>✨ Bem-vindo à Essência Intima ✨</h1>
           <p className="text-xl mb-8">Descubra aromas que despertam sensações</p>
           <Link
             href="/produtos"
-            className="inline-block px-8 py-3 bg-white text-red-900 rounded-lg font-semibold hover:opacity-90 transition"
+            className="inline-block px-8 py-3 text-red-900 rounded-lg font-semibold hover:opacity-90 transition border-2"
+            style={{ backgroundColor: "#f4e4a6", borderColor: "#d4af37" }}
           >
             Explorar Produtos
           </Link>
@@ -53,10 +54,10 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 px-4">
+      <section className="py-16 px-4" style={{ backgroundColor: "#fef5e7" }}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: "#7f1d1d" }}>
-            Produtos em Destaque
+            ✨ Produtos em Destaque ✨
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredProducts.map((product) => (
@@ -67,26 +68,26 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section className="py-16 px-4 bg-gray-50">
+      <section className="py-16 px-4" style={{ backgroundColor: "#fff9e6" }}>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-8 text-center" style={{ color: "#7f1d1d" }}>
             Por que escolher Essência Intima?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
+            <div className="text-center p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
               <div className="text-5xl mb-4">✨</div>
-              <h3 className="text-xl font-semibold mb-2">Qualidade Premium</h3>
-              <p className="text-gray-600">Aromas selecionados com os melhores ingredientes</p>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: "#7f1d1d" }}>Qualidade Premium</h3>
+              <p className="text-gray-700">Aromas selecionados com os melhores ingredientes</p>
             </div>
-            <div className="text-center">
+            <div className="text-center p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
               <div className="text-5xl mb-4">🔒</div>
-              <h3 className="text-xl font-semibold mb-2">Discrição Garantida</h3>
-              <p className="text-gray-600">Embalagens discretas para sua privacidade</p>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: "#7f1d1d" }}>Discrição Garantida</h3>
+              <p className="text-gray-700">Embalagens discretas para sua privacidade</p>
             </div>
-            <div className="text-center">
+            <div className="text-center p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
               <div className="text-5xl mb-4">🚚</div>
-              <h3 className="text-xl font-semibold mb-2">Entrega Rápida</h3>
-              <p className="text-gray-600">Frete rápido e seguro para todo Brasil</p>
+              <h3 className="text-xl font-semibold mb-2" style={{ color: "#7f1d1d" }}>Entrega Rápida</h3>
+              <p className="text-gray-700">Frete rápido e seguro para todo Brasil</p>
             </div>
           </div>
         </div>

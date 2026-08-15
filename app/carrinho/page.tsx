@@ -33,10 +33,10 @@ export default function Carrinho() {
   }
 
   return (
-    <div className="w-full px-4 py-8">
+    <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
       <div className="max-w-2xl mx-auto">
         <h1 className="text-4xl font-bold mb-8" style={{ color: "#7f1d1d" }}>
-          Seu Carrinho
+          🛒 Seu Carrinho 🛒
         </h1>
 
         {items.length === 0 ? (

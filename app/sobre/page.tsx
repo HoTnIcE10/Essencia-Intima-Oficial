@@ -1,9 +1,9 @@
 export default function Sobre() {
   return (
-    <div className="w-full px-4 py-8">
+    <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8" style={{ color: "#7f1d1d" }}>
-          Sobre Essência Intima
+          ✨ Sobre Essência Intima ✨
         </h1>
 
         {/* Mission Section */}

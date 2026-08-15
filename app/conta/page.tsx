@@ -32,7 +32,7 @@ export default function Conta() {
 
   if (!isLoggedIn) {
     return (
-      <div className="w-full px-4 py-8">
+      <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
         <div className="max-w-md mx-auto">
           <div className="bg-white p-8 rounded-lg shadow-md">
             <h1 className="text-3xl font-bold mb-8 text-center" style={{ color: "#7f1d1d" }}>
@@ -92,10 +92,10 @@ export default function Conta() {
   }
 
   return (
-    <div className="w-full px-4 py-8">
+    <div className="w-full px-4 py-8" style={{ backgroundColor: "#fef5e7", minHeight: "100vh" }}>
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold mb-8" style={{ color: "#7f1d1d" }}>
-          Minha Conta
+          👤 Minha Conta 👤
         </h1>
 
         {/* Profile Section */}

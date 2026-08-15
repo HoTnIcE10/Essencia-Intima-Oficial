@@ -42,8 +42,8 @@ export function CheckoutButton({ items }: any) {
     <button
       onClick={handleCheckout}
       disabled={isLoading || items.length === 0}
-      className="w-full px-6 py-3 text-white rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50"
-      style={{ backgroundColor: "#7f1d1d" }}
+      className="w-full px-6 py-3 text-white rounded-lg font-semibold hover:opacity-90 transition disabled:opacity-50 border-2"
+      style={{ backgroundColor: "#7f1d1d", borderColor: "#d4af37" }}
     >
       {isLoading ? "Processando..." : "Ir para Pagamento"}
     </button>

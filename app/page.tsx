@@ -11,28 +11,28 @@ const featuredProducts = [
     name: "Essência Floral",
     description: "Aroma delicado e sofisticado",
     price: 89.9,
-    image: "🌹",
+    image: "F",
   },
   {
     id: 2,
     name: "Essência Tropical",
     description: "Fragrância fresca e energizante",
     price: 79.9,
-    image: "🌺",
+    image: "T",
   },
   {
     id: 3,
     name: "Essência Amadeirada",
     description: "Aroma quente e sensual",
     price: 99.9,
-    image: "🎋",
+    image: "A",
   },
   {
     id: 4,
     name: "Essência Frutada",
     description: "Fragrância doce e refrescante",
     price: 84.9,
-    image: "🍓",
+    image: "R",
   },
 ];
 
@@ -62,16 +62,20 @@ const carouselItems = [
 
 export default function Home() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const interval = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % carouselItems.length);
-    }, 4000);
+    }, 4500);
 
     return () => clearInterval(interval);
   }, []);
 
   const currentSlide = carouselItems[activeSlide];
+  const filteredProducts = featuredProducts.filter((product) =>
+    `${product.name} ${product.description}`.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div className="w-full">
@@ -101,26 +105,27 @@ export default function Home() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 text-center text-white w-full">
           <div className="mx-auto max-w-3xl">
             <p
-              className="mb-2 uppercase tracking-[0.45em] text-sm"
+              className="mb-3 uppercase"
               style={{
                 color: "#f4e4a6",
                 fontFamily: "var(--font-modern)",
-                letterSpacing: "0.42em",
+                letterSpacing: "0.38em",
+                fontSize: "12px",
               }}
             >
-              Essencia Intima
+              Coleção premium
             </p>
             <h1
               className="mb-4 leading-none"
               style={{
                 color: "#ffffff",
                 fontFamily: "var(--font-script)",
-                fontSize: "clamp(4rem, 8vw, 8rem)",
+                fontSize: "clamp(4.2rem, 8vw, 8rem)",
                 lineHeight: 0.9,
                 textShadow: "2px 2px 12px rgba(0,0,0,0.45)",
               }}
             >
-              Essencia Intima
+              Essência Intima
             </h1>
             <p
               className="mb-8 text-lg md:text-2xl font-light"
@@ -136,7 +141,7 @@ export default function Home() {
             </p>
             <Link
               href="/produtos"
-              className="inline-block px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition border-2 hover-lift"
+              className="inline-block px-8 py-3 rounded-full font-semibold transition border-2"
               style={{ backgroundColor: "#f4e4a6", borderColor: "#d4af37", color: "#2b0a12" }}
             >
               Explorar Produtos
@@ -146,24 +151,29 @@ export default function Home() {
       </section>
 
       {/* Carousel Section */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#ffffff" }}>
+      <section className="py-20 px-4" style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-6xl mx-auto">
+          <p className="mb-3 text-center uppercase tracking-[0.28em]" style={{ color: "#8b6b2e", fontFamily: "var(--font-modern)", fontSize: "12px" }}>
+            Seleção especial
+          </p>
           <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: "#000000" }}>
-            ✨ Mais Vendidos ✨
+            Mais Vendidos
           </h2>
 
           <div className="grid gap-8 lg:grid-cols-[1.4fr_0.8fr] items-center">
             <div
-              className="relative overflow-hidden rounded-[28px] border-4 border-[#d4af37] shadow-[0_25px_60px_rgba(0,0,0,0.12)]"
-              style={{ minHeight: "420px" }}
+              key={currentSlide.title}
+              className="relative overflow-hidden rounded-[28px] border-4 border-[#d4af37] shadow-[0_25px_60px_rgba(0,0,0,0.12)] transition-all duration-700 ease-in-out"
+              style={{ minHeight: "420px", opacity: 1, transform: "scale(1)" }}
             >
               <img
                 src={currentSlide.image}
                 alt={currentSlide.title}
-                className="h-[420px] w-full object-cover transition-all duration-700"
+                className="h-[420px] w-full object-cover transition-all duration-700 ease-in-out"
+                style={{ transform: "scale(1.02)" }}
               />
               <div
-                className="absolute inset-0"
+                className="absolute inset-0 transition-all duration-700 ease-in-out"
                 style={{
                   background: `linear-gradient(90deg, ${currentSlide.color} 0%, rgba(0,0,0,0.12) 35%, rgba(0,0,0,0.15) 100%)`,
                 }}
@@ -199,10 +209,11 @@ export default function Home() {
                   key={item.title}
                   type="button"
                   onClick={() => setActiveSlide(index)}
-                  className="w-full rounded-2xl border p-4 text-left transition-all duration-300 hover:translate-x-1"
+                  className="w-full rounded-2xl border p-4 text-left transition-all duration-300 ease-in-out"
                   style={{
                     backgroundColor: activeSlide === index ? "#f7f0d4" : "#ffffff",
                     borderColor: activeSlide === index ? "#d4af37" : "#e7e7e7",
+                    transform: activeSlide === index ? "translateX(0)" : "translateX(0)",
                   }}
                 >
                   <div className="flex items-center gap-4">
@@ -228,44 +239,58 @@ export default function Home() {
       </section>
 
       {/* Featured Products */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#ffffff" }}>
+      <section className="py-20 px-4" style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-12 text-center" style={{ color: "#000000" }}>
-            ✨ Produtos em Destaque ✨
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {featuredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          <div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <p className="mb-2 uppercase tracking-[0.22em]" style={{ color: "#8b6b2e", fontFamily: "var(--font-modern)", fontSize: "12px" }}>
+                Curadoria
+              </p>
+              <h2 className="text-4xl font-bold" style={{ color: "#000000" }}>
+                Produtos em Destaque
+              </h2>
+            </div>
+            <div className="w-full md:max-w-md">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(event) => setSearchTerm(event.target.value)}
+                placeholder="Buscar por fragrância ou nome..."
+                className="w-full rounded-full border px-4 py-3 text-sm outline-none"
+                style={{ borderColor: "#d4af37", backgroundColor: "#ffffff", color: "#000000" }}
+              />
+            </div>
           </div>
+
+          {filteredProducts.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-2xl border border-dashed p-12 text-center" style={{ borderColor: "#d4af37", backgroundColor: "#f9f4e8" }}>
+              <p className="text-lg" style={{ color: "#000000" }}>
+                Nenhum resultado encontrado para sua busca.
+              </p>
+            </div>
+          )}
         </div>
       </section>
 
       {/* About Section */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#ffffff" }}>
+      <section className="py-20 px-4" style={{ backgroundColor: "#ffffff" }}>
         <div className="max-w-6xl mx-auto">
+          <p className="mb-3 text-center uppercase tracking-[0.28em]" style={{ color: "#8b6b2e", fontFamily: "var(--font-modern)", fontSize: "12px" }}>
+            Diferenciais
+          </p>
           <h2 className="text-4xl font-bold mb-8 text-center animate-fade-in-up" style={{ color: "#000000" }}>
             Por que escolher Essência Intima?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FeatureCard
-              index={0}
-              icon="✨"
-              title="Qualidade Premium"
-              description="Aromas selecionados com os melhores ingredientes"
-            />
-            <FeatureCard
-              index={1}
-              icon="🔒"
-              title="Discrição Garantida"
-              description="Embalagens discretas para sua privacidade"
-            />
-            <FeatureCard
-              index={2}
-              icon="🚚"
-              title="Entrega Rápida"
-              description="Frete rápido e seguro para todo Brasil"
-            />
+            <FeatureCard index={0} title="Qualidade Premium" description="Aromas selecionados com os melhores ingredientes" />
+            <FeatureCard index={1} title="Discrição Garantida" description="Embalagens discretas para sua privacidade" />
+            <FeatureCard index={2} title="Entrega Rápida" description="Frete rápido e seguro para todo Brasil" />
           </div>
         </div>
       </section>

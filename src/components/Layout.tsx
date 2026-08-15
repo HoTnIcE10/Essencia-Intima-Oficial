@@ -6,9 +6,8 @@ export function Header() {
   return (
     <header style={{backgroundColor: '#000000', color: 'white', padding: '15px 20px', borderBottom: '4px solid #d4af37', boxShadow: '0 4px 20px rgba(0, 0, 0, 0.3)'}}>
       <div style={{maxWidth: '1280px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-        <Link href="/" className="logo-shimmer" style={{display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none'}}>
-          <img src="/logos/3-removebg-preview.png" alt="Essencia Intima" style={{height: '45px', width: 'auto'}} />
-          <span style={{fontFamily: 'var(--font-script)', fontSize: '34px', lineHeight: 1, fontWeight: '400', color: '#f4e4a6', textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>Essencia Intima</span>
+        <Link href="/" style={{display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none'}}>
+          <span style={{fontFamily: 'var(--font-modern)', fontSize: '13px', fontWeight: '700', letterSpacing: '0.22em', textTransform: 'uppercase', color: '#f4e4a6', textShadow: '0 2px 4px rgba(0, 0, 0, 0.3)'}}>Essência Intima</span>
         </Link>
         <nav style={{display: 'flex', gap: '30px', alignItems: 'center'}}>
           <NavLink href="/">Home</NavLink>

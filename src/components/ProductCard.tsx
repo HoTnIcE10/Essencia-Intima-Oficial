@@ -28,18 +28,27 @@ export function ProductCard({ product }: any) {
   }
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all hover-lift animate-fade-in-up" style={{ border: "3px solid #d4af37" }}>
+    <div
+      className="bg-white rounded-2xl overflow-hidden transition-all animate-fade-in-up"
+      style={{
+        border: "1px solid rgba(212, 175, 55, 0.45)",
+        boxShadow: "0 12px 30px rgba(0,0,0,0.04)",
+      }}
+    >
       <div
-        className="h-48 bg-gradient-to-br flex items-center justify-center text-5xl"
-        style={{ backgroundColor: "#000000" }}
+        className="h-48 bg-gradient-to-br flex items-center justify-center text-4xl font-semibold tracking-[0.18em]"
+        style={{ backgroundColor: "#000000", color: "#f4e4a6" }}
       >
-        {product.image || "❤️"}
+        {product.image || "A"}
       </div>
       <div className="p-6">
+        <p className="mb-2 text-[10px] font-medium uppercase tracking-[0.2em]" style={{ color: "#8b6b2e" }}>
+          Coleção
+        </p>
         <h3 className="text-lg font-semibold text-gray-900 mb-2">
           {product.name}
         </h3>
-        <p className="text-gray-600 text-sm mb-4">{product.description}</p>
+        <p className="text-gray-600 text-sm mb-4 leading-relaxed">{product.description}</p>
         <div className="flex justify-between items-center">
           <span className="text-2xl font-bold" style={{ color: "#d4af37" }}>
             R$ {product.price.toFixed(2)}

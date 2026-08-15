@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { ProductCard } from "@/src/components/ProductCard";
+import { LogoAnimation } from "@/src/components/LogoAnimation";
+import { FeatureCard } from "@/src/components/FeatureCard";
 
 const featuredProducts = [
   {
@@ -37,15 +39,16 @@ export default function Home() {
     <div className="w-full">
       {/* Hero Section */}
       <section
-        className="py-20 text-center text-white"
+        className="py-20 text-center text-white animate-fade-in-down"
         style={{ backgroundColor: "#7f1d1d", borderBottom: "6px solid #d4af37" }}
       >
         <div className="max-w-6xl mx-auto px-4">
+          <LogoAnimation />
           <h1 className="text-5xl font-bold mb-4" style={{ color: "#f4e4a6" }}>✨ Bem-vindo à Essência Intima ✨</h1>
           <p className="text-xl mb-8">Descubra aromas que despertam sensações</p>
           <Link
             href="/produtos"
-            className="inline-block px-8 py-3 text-red-900 rounded-lg font-semibold hover:opacity-90 transition border-2"
+            className="inline-block px-8 py-3 text-red-900 rounded-lg font-semibold hover:opacity-90 transition border-2 hover-lift"
             style={{ backgroundColor: "#f4e4a6", borderColor: "#d4af37" }}
           >
             Explorar Produtos
@@ -70,25 +73,28 @@ export default function Home() {
       {/* About Section */}
       <section className="py-16 px-4" style={{ backgroundColor: "#fff9e6" }}>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold mb-8 text-center" style={{ color: "#7f1d1d" }}>
+          <h2 className="text-4xl font-bold mb-8 text-center animate-fade-in-up" style={{ color: "#7f1d1d" }}>
             Por que escolher Essência Intima?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
-              <div className="text-5xl mb-4">✨</div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: "#7f1d1d" }}>Qualidade Premium</h3>
-              <p className="text-gray-700">Aromas selecionados com os melhores ingredientes</p>
-            </div>
-            <div className="text-center p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
-              <div className="text-5xl mb-4">🔒</div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: "#7f1d1d" }}>Discrição Garantida</h3>
-              <p className="text-gray-700">Embalagens discretas para sua privacidade</p>
-            </div>
-            <div className="text-center p-6 rounded-lg" style={{ backgroundColor: "#f4e4a6", border: "2px solid #d4af37" }}>
-              <div className="text-5xl mb-4">🚚</div>
-              <h3 className="text-xl font-semibold mb-2" style={{ color: "#7f1d1d" }}>Entrega Rápida</h3>
-              <p className="text-gray-700">Frete rápido e seguro para todo Brasil</p>
-            </div>
+            <FeatureCard 
+              index={0}
+              icon="✨" 
+              title="Qualidade Premium" 
+              description="Aromas selecionados com os melhores ingredientes"
+            />
+            <FeatureCard 
+              index={1}
+              icon="🔒" 
+              title="Discrição Garantida" 
+              description="Embalagens discretas para sua privacidade"
+            />
+            <FeatureCard 
+              index={2}
+              icon="🚚" 
+              title="Entrega Rápida" 
+              description="Frete rápido e seguro para todo Brasil"
+            />
           </div>
         </div>
       </section>

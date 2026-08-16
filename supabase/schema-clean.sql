@@ -7,7 +7,7 @@
 create extension if not exists pgcrypto;
 
 -- PASSO 2: Types (antes de usar em tabelas)
-drop type if exists public.order_status;
+drop type if exists public.order_status cascade;
 create type public.order_status as enum (
   'pending',
   'paid',
@@ -205,6 +205,38 @@ drop policy if exists "Users can insert order items for their own orders" on pub
 drop policy if exists "Anyone can insert contact messages" on public.contact_messages;
 drop policy if exists "Only authenticated users can view contact messages" on public.contact_messages;
 
+-- Limpar policies novas (se existirem de execuções anteriores)
+drop policy if exists "products_select_policy" on public.products;
+drop policy if exists "products_insert_policy" on public.products;
+drop policy if exists "products_update_policy" on public.products;
+drop policy if exists "products_delete_policy" on public.products;
+drop policy if exists "categories_select_policy" on public.categories;
+drop policy if exists "categories_insert_policy" on public.categories;
+drop policy if exists "categories_update_policy" on public.categories;
+drop policy if exists "categories_delete_policy" on public.categories;
+drop policy if exists "product_images_select_policy" on public.product_images;
+drop policy if exists "product_images_insert_policy" on public.product_images;
+drop policy if exists "product_images_update_policy" on public.product_images;
+drop policy if exists "product_images_delete_policy" on public.product_images;
+drop policy if exists "profiles_select_policy" on public.profiles;
+drop policy if exists "profiles_insert_policy" on public.profiles;
+drop policy if exists "profiles_update_policy" on public.profiles;
+drop policy if exists "addresses_select_policy" on public.addresses;
+drop policy if exists "addresses_insert_policy" on public.addresses;
+drop policy if exists "addresses_update_policy" on public.addresses;
+drop policy if exists "addresses_delete_policy" on public.addresses;
+drop policy if exists "cart_select_policy" on public.cart_items;
+drop policy if exists "cart_insert_policy" on public.cart_items;
+drop policy if exists "cart_update_policy" on public.cart_items;
+drop policy if exists "cart_delete_policy" on public.cart_items;
+drop policy if exists "orders_select_policy" on public.orders;
+drop policy if exists "orders_insert_policy" on public.orders;
+drop policy if exists "orders_update_policy" on public.orders;
+drop policy if exists "order_items_select_policy" on public.order_items;
+drop policy if exists "order_items_insert_policy" on public.order_items;
+drop policy if exists "contact_insert_policy" on public.contact_messages;
+drop policy if exists "contact_select_policy" on public.contact_messages;
+
 -- Policies para Produtos (pública leitura)
 create policy "products_select_policy" on public.products for select using (true);
 create policy "products_insert_policy" on public.products for insert with check (auth.role() = 'authenticated');
@@ -309,7 +341,8 @@ after insert on auth.users
 for each row execute procedure public.handle_new_user();
 
 -- PASSO 11: View para produtos com categoria
-create or replace view public.products_with_category as
+drop view if exists public.products_with_category;
+create view public.products_with_category as
 select
   p.id,
   p.category_id,

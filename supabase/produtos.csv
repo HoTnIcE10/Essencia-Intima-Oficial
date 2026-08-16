@@ -1,0 +1,9 @@
+name,slug,short_description,description,price,compare_at_price,stock,featured,is_active,sort_order
+Essência Floral,essencia-floral,Aroma delicado e sofisticado,Fragrância floral leve elegante e envolvente para o dia a dia.,89.90,119.90,30,true,true,1
+Essência Tropical,essencia-tropical,Fragrância fresca e energizante,Uma mistura cítrica e floral com sensação vibrante e exclusiva.,79.90,109.90,25,true,true,2
+Essência Amadeirada,essencia-amadeirada,Aroma quente e sensual,Notas amadeiradas com profundidade e presença sofisticada.,99.90,149.90,18,true,true,3
+Essência Frutada,essencia-frutada,Fragrância doce e refrescante,Um toque frutado para uma experiência leve e irresistível.,84.90,124.90,22,true,true,4
+Essência Floral Intenso,essencia-floral-intenso,Versão mais marcante e elegante,Uma fragrância floral intensa com presença sofisticada e sensual.,94.90,129.90,20,false,true,5
+Essência Almíscara,essencia-almiscara,Aroma envolvente e gourmand,Notas quentes e acolhedoras com um toque exclusivo e misterioso.,109.90,159.90,12,false,true,6
+Essência Cítrica,essencia-citrica,Fragrância cítrica e revigorante,Notas frescas e luminosas para um dia mais dinâmico e elegante.,74.90,99.90,27,false,true,7
+Essência Oriental,essencia-oriental,Aroma exótico e misterioso,Uma composição mais intensa sensual e marcante.,119.90,169.90,14,false,true,8

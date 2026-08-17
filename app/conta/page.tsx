@@ -9,6 +9,8 @@ export default function Conta() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [authMode, setAuthMode] = useState<"login" | "register">("login");
+  const [user, setUser] = useState<any>(null);
+  const [orders, setOrders] = useState<any[]>([]);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,7 +20,33 @@ export default function Conta() {
   useEffect(() => {
     const checkSession = async () => {
       const { data } = await supabase.auth.getUser();
+      setUser(data.user);
       setIsLoggedIn(Boolean(data.user));
+
+      if (data.user) {
+        // Fetch user's orders
+        const { data: userOrders } = await supabase
+          .from("orders")
+          .select(
+            `
+            id,
+            total_amount,
+            status,
+            created_at,
+            order_items(
+              quantity,
+              price,
+              products(name)
+            )
+          `
+          )
+          .eq("user_id", data.user.id)
+          .order("created_at", { ascending: false });
+
+        if (userOrders) {
+          setOrders(userOrders);
+        }
+      }
       setLoading(false);
     };
 
@@ -43,6 +71,7 @@ export default function Conta() {
 
         if (error) throw error;
         setIsLoggedIn(true);
+        window.location.reload();
       } else {
         const { error } = await supabase.auth.signUp({
           email: formData.email,
@@ -50,18 +79,19 @@ export default function Conta() {
         });
 
         if (error) throw error;
-        setMessage("Cadastro realizado com sucesso. Verifique seu email para confirmar a conta.");
+        setMessage("✅ Cadastro realizado! Verifique seu email para confirmar.");
       }
     } catch (error: any) {
-      setMessage(error.message || "Erro ao processar autenticação.");
+      setMessage("❌ " + (error.message || "Erro ao processar autenticação."));
     }
   };
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
     setIsLoggedIn(false);
+    setUser(null);
     setFormData({ email: "", password: "" });
-    setMessage("Você saiu da conta.");
+    window.location.reload();
   };
 
   if (loading) {
@@ -132,11 +162,11 @@ export default function Conta() {
                 />
               </div>
 
-              {message ? (
-                <p className="text-sm" style={{ color: message.includes("sucesso") ? "#166534" : "#b91c1c" }}>
+              {message && (
+                <p className="text-sm text-center" style={{ color: message.includes("❌") ? "#b91c1c" : "#166534" }}>
                   {message}
                 </p>
-              ) : null}
+              )}
 
               <button
                 type="submit"
@@ -155,63 +185,109 @@ export default function Conta() {
   return (
     <div className="w-full px-4 py-8" style={{ backgroundColor: "#ffffff", minHeight: "100vh" }}>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8" style={{ color: "#000000" }}>
-          Minha Conta
-        </h1>
+        <div className="flex justify-between items-center mb-8">
+          <h1 className="text-4xl font-bold" style={{ color: "#000000" }}>
+            Minha Conta
+          </h1>
+          <button
+            onClick={handleLogout}
+            className="px-6 py-2 rounded-full font-semibold text-white"
+            style={{ backgroundColor: "#000000" }}
+          >
+            Sair
+          </button>
+        </div>
 
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-          <div className="bg-white p-6 rounded-[24px] shadow-md" style={{ border: "1px solid rgba(212, 175, 55, 0.4)" }}>
-            <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
-              Informações Pessoais
-            </h2>
-            <div className="space-y-4">
-              <div>
-                <label className="text-gray-600 font-semibold">Email</label>
-                <p className="text-gray-900">{formData.email || "Sua conta está ativa"}</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="bg-white p-6 rounded-[24px] shadow-md" style={{ border: "1px solid rgba(212, 175, 55, 0.4)" }}>
-            <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
-              Histórico de Pedidos
-            </h2>
-            <p className="text-gray-600 mb-4">
-              Você ainda não realizou nenhum pedido.
-            </p>
-            <Link
-              href="/produtos"
-              className="inline-block px-6 py-2 rounded-full font-semibold transition"
-              style={{ backgroundColor: "#000000", color: "#ffffff" }}
-            >
-              Fazer uma Compra
-            </Link>
-          </div>
-        </section>
-
+        {/* Informações Pessoais */}
         <section className="bg-white p-6 rounded-[24px] shadow-md mb-8" style={{ border: "1px solid rgba(212, 175, 55, 0.4)" }}>
           <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
-            Preferências
+            Informações Pessoais
           </h2>
           <div className="space-y-4">
-            <label className="flex items-center">
-              <input type="checkbox" className="mr-3" defaultChecked />
-              <span>Receber newsletter com ofertas exclusivas</span>
-            </label>
-            <label className="flex items-center">
-              <input type="checkbox" className="mr-3" />
-              <span>Receber notificações de novos produtos</span>
-            </label>
+            <div>
+              <label className="text-gray-600 font-semibold">Email</label>
+              <p className="text-gray-900 font-medium">{user?.email}</p>
+            </div>
+            <div>
+              <label className="text-gray-600 font-semibold">Membro desde</label>
+              <p className="text-gray-900">
+                {new Date(user?.created_at).toLocaleDateString("pt-BR")}
+              </p>
+            </div>
           </div>
         </section>
 
-        <button
-          onClick={handleLogout}
-          className="px-8 py-3 rounded-full font-semibold transition"
-          style={{ backgroundColor: "#000000", color: "#ffffff" }}
-        >
-          Sair da Conta
-        </button>
+        {/* Histórico de Pedidos */}
+        <section className="bg-white p-6 rounded-[24px] shadow-md" style={{ border: "1px solid rgba(212, 175, 55, 0.4)" }}>
+          <h2 className="text-2xl font-semibold mb-4" style={{ color: "#000000" }}>
+            Histórico de Pedidos
+          </h2>
+
+          {orders.length === 0 ? (
+            <div className="text-center py-8">
+              <p className="text-gray-600 mb-4">
+                Você ainda não realizou nenhum pedido.
+              </p>
+              <Link
+                href="/produtos"
+                className="inline-block px-6 py-2 rounded-full font-semibold transition"
+                style={{ backgroundColor: "#000000", color: "#ffffff" }}
+              >
+                Ver Produtos
+              </Link>
+            </div>
+          ) : (
+            <div className="space-y-4">
+              {orders.map((order: any) => (
+                <div
+                  key={order.id}
+                  className="p-4 rounded-lg"
+                  style={{ border: "1px solid rgba(212, 175, 55, 0.3)", backgroundColor: "#f9f4e8" }}
+                >
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <p className="text-sm" style={{ color: "#8b6b2e" }}>
+                        Pedido #{order.id.slice(0, 8).toUpperCase()}
+                      </p>
+                      <p className="text-gray-600 text-sm">
+                        {new Date(order.created_at).toLocaleDateString("pt-BR")}
+                      </p>
+                    </div>
+                    <span
+                      className="px-3 py-1 rounded-full text-xs font-semibold text-white"
+                      style={{
+                        backgroundColor:
+                          order.status === "completed"
+                            ? "#16a34a"
+                            : order.status === "pending"
+                              ? "#ea8c55"
+                              : "#666666",
+                      }}
+                    >
+                      {order.status === "completed"
+                        ? "✓ Pago"
+                        : order.status === "pending"
+                          ? "Pendente"
+                          : "Cancelado"}
+                    </span>
+                  </div>
+
+                  <div className="mb-3">
+                    {order.order_items?.map((item: any, idx: number) => (
+                      <p key={idx} className="text-sm" style={{ color: "#000000" }}>
+                        {item.products?.name} × {item.quantity}
+                      </p>
+                    ))}
+                  </div>
+
+                  <div className="text-right font-bold" style={{ color: "#8b6b2e" }}>
+                    R$ {order.total_amount.toFixed(2)}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
       </div>
     </div>
   );

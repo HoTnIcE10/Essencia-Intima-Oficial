@@ -1,27 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
+import { addToCart } from "@/src/utils/supabase/cart";
 
 export function ProductCard({ product }: any) {
   const [isAdding, setIsAdding] = useState(false);
+  const [message, setMessage] = useState("");
 
   async function handleAddToCart() {
     setIsAdding(true);
+    setMessage("");
     try {
-      const response = await fetch("/api/cart", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          productId: product.id,
-          name: product.name,
-          price: product.price,
-          quantity: 1,
-        }),
-      });
-      if (response.ok) {
-        alert("Produto adicionado ao carrinho!");
-      }
+      await addToCart(product.id, 1);
+      setMessage("✅ Adicionado!");
+      setTimeout(() => setMessage(""), 3000);
+    } catch (error: any) {
+      setMessage(error.message || "Erro ao adicionar");
     } finally {
       setIsAdding(false);
     }
@@ -62,6 +56,11 @@ export function ProductCard({ product }: any) {
             {isAdding ? "..." : "Adicionar"}
           </button>
         </div>
+        {message && (
+          <p className="text-xs mt-2 text-center" style={{ color: message.includes("✅") ? "#16a34a" : "#dc2626" }}>
+            {message}
+          </p>
+        )}
       </div>
     </div>
   );
